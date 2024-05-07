@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import 'dotenv/config.js';
 import { userRoutes } from './routes/userRoutes.js';
+import { recipeRoutes } from './routes/recipeRoutes.js';
 
 const app = express();
 const port = 3000;
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/api/auth/', userRoutes);
+app.use('api/recipes/', recipeRoutes);
 
 try {
   await mongoose.connect(
