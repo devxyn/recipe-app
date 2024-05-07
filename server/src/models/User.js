@@ -1,10 +1,12 @@
-import { Schemama, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const UserSchema = new Schemama({
+const { Schema, model } = mongoose;
+
+const userSchema = new Schema({
   username: { type: String, required: true, unique: true, trim: true },
   password: { type: String, required: true },
 });
 
-const User = model('User', UserSchema);
+const User = model('User', userSchema);
 
 export default User;
