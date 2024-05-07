@@ -8,7 +8,7 @@ const recipeSchema = new Schema({
   instructions: { type: String, required: true },
   imageUrl: { type: String, required: true },
   cookingTime: { type: Number, required: true },
-  userOwnder: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true },
+  userOwner: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true },
 });
 
 const Recipe = model('Recipe', recipeSchema);

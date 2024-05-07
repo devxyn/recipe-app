@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
 import CreateRecipe from './pages/CreateRecipe';
-import SavedRecipe from './pages/SavedRecipe';
+import SavedRecipes from './pages/SavedRecipe';
 import Main from './component/Main';
 
 function App() {
@@ -21,8 +21,8 @@ function App() {
           element: <CreateRecipe />,
         },
         {
-          path: '/saved-recipe',
-          element: <SavedRecipe />,
+          path: '/saved-recipes',
+          element: <SavedRecipes />,
         },
       ],
     },

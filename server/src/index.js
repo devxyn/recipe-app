@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/api/auth/', userRoutes);
-app.use('api/recipes/', recipeRoutes);
+app.use('/api/recipe/', recipeRoutes);
 
 try {
   await mongoose.connect(

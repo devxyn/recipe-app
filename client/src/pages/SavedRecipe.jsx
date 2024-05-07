@@ -1,5 +1,5 @@
-const SavedRecipe = () => {
-  return <div>SavedRecipe</div>;
+const SavedRecipes = () => {
+  return <div>SavedRecipes</div>;
 };
 
-export default SavedRecipe;
+export default SavedRecipes;
