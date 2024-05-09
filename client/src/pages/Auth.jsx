@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://recipe-app-server-api.vercel.app/api/auth/login', {
+      const response = await axios.post('https://recipe-app-iege.onrender.com/api/auth/login', {
         username,
         password,
       });
@@ -62,7 +62,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post('https://recipe-app-server-api.vercel.app/api/auth/register', { username, password });
+      await axios.post('https://recipe-app-iege.onrender.com/api/auth/register', { username, password });
       alert('Registration successfully');
     } catch (e) {
       console.error(e);
