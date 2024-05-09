@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import useGetUserID from '../hooks/useGetUserID';
+import RecipeCard from '../component/RecipeCard';
 
 const SavedRecipe = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -21,23 +22,13 @@ const SavedRecipe = () => {
   };
 
   return (
-    <div>
-      <h2>Saved Recipes</h2>
-      <ul>
+    <div className='h-screen pt-10 px-5 md:px-0'>
+      <h1 className='text-4xl font-bold text-center'>Recipes</h1>
+      <div className='flex flex-wrap justify-center py-10 gap-10'>
         {savedRecipes.map((recipe) => (
-          <li key={recipe._id}>
-            <div>
-              <h2>{recipe.name}</h2>
-            </div>
-
-            <div>
-              <p>{recipe.instructions}</p>
-            </div>
-            <img src={recipe.imageUrl} alt={recipe.name} />
-            <p>Cooking time: {recipe.cookingTime} (minutes)</p>
-          </li>
+          <RecipeCard key={recipe._id} recipe={recipe} showDetails={true} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

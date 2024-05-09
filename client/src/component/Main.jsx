@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import useGetUserID from '../hooks/useGetUserID';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import RecipeCard from './RecipeCard';
 
 const Main = () => {
   const [recipes, setRecipes] = useState([]);
@@ -54,29 +55,19 @@ const Main = () => {
   const isRecipeSaved = (id) => savedRecipes.includes(id);
 
   return (
-    <div>
-      <h2>Recipes</h2>
-      <ul>
+    <div className='h-screen pt-10 px-5 md:px:0'>
+      <h1 className='text-4xl font-bold text-center'>Recipes</h1>
+      <div className='flex flex-wrap justify-center py-10 gap-10'>
         {recipes.map((recipe) => (
-          <li key={recipe._id}>
-            <div>
-              <h2>{recipe.name}</h2>
-
-              <button
-                className='border border-black'
-                disabled={isRecipeSaved(recipe._id)}
-                onClick={() => saveRecipe(recipe._id)}>
-                {!isRecipeSaved(recipe._id) ? 'Save' : 'Saved'}
-              </button>
-            </div>
-            <div>
-              <p>{recipe.instructions}</p>
-            </div>
-            <img src={recipe.imageUrl} alt={recipe.name} />
-            <p>Cooking time: {recipe.cookingTime} (minutes)</p>
-          </li>
+          <RecipeCard
+            key={recipe._id}
+            recipe={recipe}
+            isRecipeSaved={isRecipeSaved}
+            saveRecipe={saveRecipe}
+            showDetails={false}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

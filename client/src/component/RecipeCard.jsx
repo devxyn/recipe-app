@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 const RecipeCard = ({ recipe, isRecipeSaved, saveRecipe, showDetails }) => {
   return (
-    <div className='w-full md:w-[30%] border bg-black rounded-xl' key={recipe._id}>
-      <img className='h-80 object-cover rounded-ss-xl rounded-se-xl' src={recipe.imageUrl} alt={recipe.name} />
+    <div className='w-full md:w-{42%} lg:w-[30%] border bg-black rounded-xl' key={recipe._id}>
+      <img className='h-80 w-full object-cover rounded-ss-xl rounded-se-xl' src={recipe.imageUrl} alt={recipe.name} />
       <div className='px-10 py-6 flex flex-col gap-2'>
         <div className={`flex ${!showDetails ? 'justify-between' : 'justify-center'} items-center`}>
-          <h2 className='text-white text-3xl font-bold'>{recipe.name}</h2>
+          <h2 className='text-white text-2xl md:text-3xl font-bold'>{recipe.name}</h2>
           {!showDetails && (
             <button
               className={`bg-white px-5 py-2 text-xl font-semibold rounded-3xl border border-black ${
