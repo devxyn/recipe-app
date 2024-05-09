@@ -2,8 +2,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import useGetUserID from '../hooks/useGetUserID';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const CreateRecipe = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [cookies, _] = useCookies(['access_token']);
   const userID = useGetUserID();
 
   const [recipe, setRecipe] = useState({
@@ -38,7 +41,9 @@ const CreateRecipe = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/api/recipe/add', recipe);
+      await axios.post('http://localhost:3000/api/recipe/add', recipe, {
+        headers: { Authorization: cookies.access_token },
+      });
       alert('Recipe created!');
       navigate('/');
     } catch (err) {
@@ -46,7 +51,6 @@ const CreateRecipe = () => {
     }
   };
 
-  console.log(recipe);
   return (
     <div className='flex flex-col'>
       <h2>Create Recipe</h2>

@@ -2,22 +2,27 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import useGetUserID from '../hooks/useGetUserID';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Main = () => {
   const [recipes, setRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [cookies, _] = useCookies(['access_token']);
+
   const userID = useGetUserID();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchRecipe();
-    fetchSavedRecipe();
+    if (cookies.access_token) fetchSavedRecipe();
   }, []);
 
   const fetchRecipe = async () => {
     try {
       const response = await axios.get('http://localhost:3000/api/recipe');
       setRecipes(response.data);
-      //console.log(response.data);
     } catch (err) {
       console.error(err);
     }
@@ -27,7 +32,6 @@ const Main = () => {
     try {
       const response = await axios.get(`http://localhost:3000/api/recipe/saved-recipes/ids/${userID}`);
       setSavedRecipes(response.data.savedRecipes);
-      console.log(response.data.savedRecipes);
     } catch (err) {
       console.error(err);
     }
@@ -35,11 +39,15 @@ const Main = () => {
 
   const saveRecipe = async (recipeID) => {
     try {
-      const response = await axios.put('http://localhost:3000/api/recipe', { recipeID, userID });
+      const response = await axios.put(
+        'http://localhost:3000/api/recipe',
+        { recipeID, userID },
+        { headers: { Authorization: cookies.access_token } },
+      );
       setSavedRecipes(response.data.savedRecipes);
-      console.log(response.data.savedRecipes);
     } catch (err) {
       console.error(err);
+      navigate('/auth');
     }
   };
 
@@ -58,7 +66,7 @@ const Main = () => {
                 className='border border-black'
                 disabled={isRecipeSaved(recipe._id)}
                 onClick={() => saveRecipe(recipe._id)}>
-                Save
+                {!isRecipeSaved(recipe._id) ? 'Save' : 'Saved'}
               </button>
             </div>
             <div>
