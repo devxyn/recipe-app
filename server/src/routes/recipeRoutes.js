@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import Recipe from './../models/Recipe.js';
 import User from '../models/User.js';
+import { verifyToken } from '../../middlewares/verifyToken.js';
 
 const router = new Router();
 
@@ -13,7 +14,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/add', async (req, res) => {
+router.post('/add', verifyToken, async (req, res) => {
   const { name, ingredients, instructions, imageUrl, cookingTime, userOwner } = req.body;
 
   try {
@@ -24,7 +25,7 @@ router.post('/add', async (req, res) => {
   }
 });
 
-router.put('/', async (req, res) => {
+router.put('/', verifyToken, async (req, res) => {
   const { userID, recipeID } = req.body;
 
   try {
@@ -50,7 +51,7 @@ router.get('/saved-recipes/ids/:userID', async (req, res) => {
   }
 });
 
-router.get('/saved-recipes', async (req, res) => {
+router.get('/saved-recipes/:userID', async (req, res) => {
   const { userID } = req.params;
 
   try {
