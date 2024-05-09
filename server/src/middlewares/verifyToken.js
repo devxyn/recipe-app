@@ -1,6 +1,6 @@
 import 'dotenv/config.js';
 
-export const verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (token) {
@@ -14,3 +14,5 @@ export const verifyToken = (req, res, next) => {
     res.status(401).json({ message: 'Unauthorized user!' });
   }
 };
+
+export default verifyToken;
