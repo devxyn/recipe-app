@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import Recipe from './../models/Recipe.js';
 import User from '../models/User.js';
-import { verifyToken } from '../../middlewares/verifyToken.js';
+import { verifyToken } from './../../middlewares/verifyToken';
 
 const router = new Router();
 
