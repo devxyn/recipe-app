@@ -3,11 +3,9 @@ import Navbar from '../component/Navbar';
 
 const Home = () => {
   return (
-    <div className='h-screen'>
+    <div className='h-full'>
       <Navbar />
-      <main className='h-full border'>
-        <Outlet />
-      </main>
+      <Outlet />
     </div>
   );
 };

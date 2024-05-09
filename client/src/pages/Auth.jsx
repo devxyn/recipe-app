@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Auth = () => {
   return (
-    <div className='h-full flex flex-row justify-center items-center gap-10'>
+    <div className='flex flex-col md:flex-row w-full p-5 md:p-32 justify-center items-center gap-5 md:gap-10'>
       <Login />
       <Register />
     </div>
@@ -82,35 +82,43 @@ const Register = () => {
 // eslint-disable-next-line react/prop-types
 const Form = ({ username, setUsername, password, setPassword, label, onSubmit }) => {
   return (
-    <div>
-      <form className='flex flex-col justify-center items-center' onSubmit={onSubmit}>
-        <h2>{label}</h2>
-        <div>
-          <label htmlFor={`${label}-username`}>Username:</label>
-          <input
-            className='border border-black'
-            type='text'
-            name={`${label}-username`}
-            id={`${label}-username`}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor={`${label}-password`}>Password:</label>
-          <input
-            className='border border-black'
-            type='password'
-            name={`${label}-password`}
-            id={`${label}-password`}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button className='border border-black' type='Submit'>
-          Submit
-        </button>
-      </form>
-    </div>
+    <form
+      className='flex flex-col items-center justify-center w-full md:w-1/2 gap-4 py-10 border border-black rounded-2xl'
+      onSubmit={onSubmit}>
+      <h2 className='text-3xl font-bold'>{label}</h2>
+      <div className='flex flex-col gap-1 w-3/4'>
+        <label className='text-xl' htmlFor={`${label}-username`}>
+          Username:
+        </label>
+        <input
+          className='border border-black px-4 py-3 rounded-2xl'
+          type='text'
+          name={`${label}-username`}
+          id={`${label}-username`}
+          value={username}
+          placeholder='Username'
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div className='flex flex-col gap-1 w-3/4'>
+        <label className='text-xl' htmlFor={`${label}-password`}>
+          Password:
+        </label>
+        <input
+          className='border border-black px-4 py-3 rounded-2xl'
+          type='password'
+          name={`${label}-password`}
+          id={`${label}-password`}
+          value={password}
+          placeholder='Password'
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button
+        className='bg-black text-white px-6 py-3 text-xl font-semibold rounded-3xl active:border active:border-black active:bg-white active:text-black'
+        type='Submit'>
+        Submit
+      </button>
+    </form>
   );
 };
