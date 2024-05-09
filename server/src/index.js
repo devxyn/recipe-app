@@ -10,13 +10,9 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: ['https://devxynrecipeapp.vercel.app'],
-    methods: ['POST', 'GET', 'PUT'],
-    credentials: true,
-  }),
-);
+app.use(cors({
+  origin: ['https://devxynrecipeapp.vercel.app'],
+}));
 
 app.use('/api/auth/', userRoutes);
 app.use('/api/recipe/', recipeRoutes);
