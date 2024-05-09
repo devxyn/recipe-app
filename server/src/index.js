@@ -12,7 +12,7 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ['https://devxynrecipeapp.vercel.app/'],
+    origin: ['https://devxynrecipeapp.vercel.app'],
     methods: ['POST', 'GET', 'PUT'],
     credentials: true,
   }),
