@@ -43,7 +43,7 @@ const Main = () => {
       const response = await axios.put(
         'https://recipe-app-iege.onrender.com/api/recipe/',
         { recipeID, userID },
-        // { headers: { Authorization: cookies.access_token } },
+        { headers: { Authorization: cookies.access_token } },
       );
       setSavedRecipes(response.data.savedRecipes);
     } catch (err) {
