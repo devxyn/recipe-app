@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/add', async (req, res) => {
+router.post('/add', verifyToken, async (req, res) => {
   const { name, ingredients, instructions, imageUrl, cookingTime, userOwner } = req.body;
 
   try {
@@ -25,7 +25,7 @@ router.post('/add', async (req, res) => {
   }
 });
 
-router.put('/', async (req, res) => {
+router.put('/', verifyToken, async (req, res) => {
   const { userID, recipeID } = req.body;
 
   try {

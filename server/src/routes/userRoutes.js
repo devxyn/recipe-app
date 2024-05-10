@@ -2,7 +2,6 @@ import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import User from './../models/User.js';
-
 const router = new Router();
 
 router.post('/register', async (req, res) => {
