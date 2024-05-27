@@ -40,6 +40,24 @@ router.put('/', verifyToken, async (req, res) => {
   }
 });
 
+router.delete('/saved-recipes/delete', verifyToken, async (req, res) => {
+  const { userID, recipeID } = req.body;
+
+  try {
+    const user = await User.findById(userID);
+
+    if (!user) res.status(404).json({ message: 'User not found!' });
+    if (!user.savedRecipes.includes(recipeID)) res.status(404).json({ message: 'Recipe not found in saved recipes!' });
+
+    user.savedRecipes = user.savedRecipes.filter((id) => id.toString() !== recipeID);
+    await user.save();
+
+    res.status(200).json({ message: 'Recipe has been removed successfully!', savedRecipes: user.savedRecipes });
+  } catch (error) {
+    res.status(500).json({ message: 'Something went wrong!' });
+  }
+});
+
 router.get('/saved-recipes/ids/:userID', async (req, res) => {
   const { userID } = req.params;
 
