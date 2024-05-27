@@ -22,7 +22,7 @@ const Main = () => {
 
   const fetchRecipe = async () => {
     try {
-      const response = await axios.get('https://recipe-app-iege.onrender.com/api/recipe');
+      const response = await axios.get('https://recipe-app-server-three.vercel.app/api/recipe');
       setRecipes(response.data);
     } catch (err) {
       console.error(err);
@@ -31,7 +31,9 @@ const Main = () => {
 
   const fetchSavedRecipe = async () => {
     try {
-      const response = await axios.get(`https://recipe-app-iege.onrender.com/api/recipe/saved-recipes/ids/${userID}`);
+      const response = await axios.get(
+        `https://recipe-app-server-three.vercel.app/api/recipe/saved-recipes/ids/${userID}`,
+      );
       setSavedRecipes(response.data.savedRecipes);
     } catch (err) {
       console.error(err);
@@ -41,7 +43,7 @@ const Main = () => {
   const saveRecipe = async (recipeID) => {
     try {
       const response = await axios.put(
-        'https://recipe-app-iege.onrender.com/api/recipe/',
+        'https://recipe-app-server-three.vercel.app/api/recipe/',
         { recipeID, userID },
         { headers: { Authorization: cookies.access_token } },
       );
